@@ -1,0 +1,11 @@
+{
+    "name": "grant-finder-bot",
+    "version": "1.0.0",
+    "type": "module",
+    "dependencies": {
+        "apify": "^3.1.0"
+    },
+    "scripts": {
+        "start": "node src/main.js"
+    }
+}
