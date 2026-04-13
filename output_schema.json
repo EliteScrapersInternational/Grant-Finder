@@ -1,12 +1,12 @@
 {
-    "title": "Elite Grant Ultra Results",
+    "title": "Elite Grant Absolute Results",
     "type": "object",
     "properties": {
-        "grantName": { "type": "string", "title": "Grant Name" },
-        "grantType": { "type": "string", "title": "Category" },
-        "organizationType": { "type": "string", "title": "Source Type" },
-        "successProbability": { "type": "string", "title": "Match Score" },
-        "link": { "type": "string", "title": "Source URL", "format": "uri" },
-        "pitch": { "type": "string", "title": "Custom Pitch" }
+        "grantName": { "type": "string", "title": "Grant Opportunity" },
+        "eligibilityFocus": { "type": "string", "title": "Eligibility Group" },
+        "fundingTier": { "type": "string", "title": "Funding Level" },
+        "riskAudit": { "type": "string", "title": "Risk/Status" },
+        "directLink": { "type": "string", "title": "Source URL", "format": "uri" },
+        "professionalPitch": { "type": "string", "title": "Client Pitch" }
     }
 }
