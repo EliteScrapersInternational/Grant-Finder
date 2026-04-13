@@ -31,8 +31,7 @@
         "directLink": {
             "type": "string",
             "title": "Link",
-            "format": "uri",
-            "template": "<a href=\"{{value}}\">View Grant</a>"
+            "template": "{{value}}"
         },
         "professionalPitch": {
             "type": "string",
