@@ -21,10 +21,10 @@ const searchRun = await Actor.call('apify/google-search-scraper', {
 const { defaultDatasetId } = searchRun;
 const dataset = await Actor.openDataset(defaultDatasetId);
 const { items } = await dataset.getData();
-const rawLeads = items.flatMap(page => page.organicResults);
+const rawLeads = items.flatMap(page => page.organicResults || []);
 
 const eliteResults = rawLeads.map(lead => {
-    const content = (lead.title + " " + lead.description).toLowerCase();
+    const content = ((lead.title || "") + " " + (lead.description || "")).toLowerCase();
     
     // 🔍 ELIGIBILITY AUDIT
     let eligibility = "General Business";
@@ -53,4 +53,9 @@ const eliteResults = rawLeads.map(lead => {
         complexity: complexity,
         riskAudit: riskLevel,
         directLink: lead.url,
-        professionalPitch: `I analyzed the ${lead.title}. This ${tier} opportunity is ${complexity
+        professionalPitch: `I analyzed the ${lead.title}. This ${tier} opportunity is ${complexity} and specifically focuses on ${eligibility} applicants. Our audit shows a ${riskLevel} risk level for this application.`
+    };
+});
+
+await Actor.pushData(eliteResults);
+await Actor.exit();
