@@ -1,0 +1,23 @@
+{
+    "title": "Grant Finder Output",
+    "type": "object",
+    "properties": {
+        "grantTitle": {
+            "type": "string",
+            "title": "Grant Name"
+        },
+        "link": {
+            "type": "string",
+            "title": "URL",
+            "format": "uri"
+        },
+        "audit_status": {
+            "type": "string",
+            "title": "Status"
+        },
+        "pitch": {
+            "type": "string",
+            "title": "Outreach Pitch"
+        }
+    }
+}
