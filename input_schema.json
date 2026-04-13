@@ -1,17 +1,17 @@
 {
-    "title": "Grant Finder & Auditor",
+    "title": "Grant Finder Input",
     "type": "object",
     "schemaVersion": 1,
     "properties": {
         "grantNiche": {
-            "title": "What kind of grant?",
+            "title": "Grant Niche",
             "type": "string",
-            "description": "Example: Women in Tech, Small Business, Education",
+            "description": "e.g., STEM grants for students",
             "editor": "textfield",
-            "prefill": "Minority Small Business"
+            "prefill": "Small Business Grants"
         },
         "maxResults": {
-            "title": "How many grants to find?",
+            "title": "Max Results",
             "type": "integer",
             "default": 10
         }
