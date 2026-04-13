@@ -1,23 +1,12 @@
 {
-    "title": "Grant Finder Output",
+    "title": "Grant Finder Results",
     "type": "object",
     "properties": {
-        "grantTitle": {
-            "type": "string",
-            "title": "Grant Name"
-        },
-        "link": {
-            "type": "string",
-            "title": "URL",
-            "format": "uri"
-        },
-        "audit_status": {
-            "type": "string",
-            "title": "Status"
-        },
-        "pitch": {
-            "type": "string",
-            "title": "Outreach Pitch"
-        }
+        "grantName": { "type": "string", "title": "Grant Name" },
+        "fundingAmount": { "type": "string", "title": "Estimated Funding" },
+        "status": { "type": "string", "title": "Current Status" },
+        "isGovernment": { "type": "string", "title": "Gov vs Private" },
+        "source": { "type": "string", "title": "Official Link", "format": "uri" },
+        "outreachPitch": { "type": "string", "title": "Ready-to-use Pitch" }
     }
 }
