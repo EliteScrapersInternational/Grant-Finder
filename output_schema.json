@@ -1,12 +1,12 @@
 {
-    "title": "Grant Finder Results",
+    "title": "Elite Grant Ultra Results",
     "type": "object",
     "properties": {
         "grantName": { "type": "string", "title": "Grant Name" },
-        "fundingAmount": { "type": "string", "title": "Estimated Funding" },
-        "status": { "type": "string", "title": "Current Status" },
-        "isGovernment": { "type": "string", "title": "Gov vs Private" },
-        "source": { "type": "string", "title": "Official Link", "format": "uri" },
-        "outreachPitch": { "type": "string", "title": "Ready-to-use Pitch" }
+        "grantType": { "type": "string", "title": "Category" },
+        "organizationType": { "type": "string", "title": "Source Type" },
+        "successProbability": { "type": "string", "title": "Match Score" },
+        "link": { "type": "string", "title": "Source URL", "format": "uri" },
+        "pitch": { "type": "string", "title": "Custom Pitch" }
     }
 }
