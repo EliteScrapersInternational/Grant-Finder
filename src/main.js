@@ -53,7 +53,26 @@ const eliteResults = rawLeads.map(lead => {
         complexity: complexity,
         riskAudit: riskLevel,
         directLink: lead.url,
-        professionalPitch: `I analyzed the ${lead.title}. This ${tier} opportunity is ${complexity} and specifically focuses on ${eligibility} applicants. Our audit shows a ${riskLevel} risk level for this application.`
+        2026-04-13T08:30:35.633Z ACTOR: Pulling container image of build QjHeGCDnendBScgCN from registry.
+2026-04-13T08:30:36.688Z ACTOR: Creating container.
+2026-04-13T08:30:36.790Z ACTOR: Starting container.
+2026-04-13T08:30:36.791Z ACTOR: Running under "LIMITED_PERMISSIONS" permission level.
+2026-04-13T08:30:37.341Z
+2026-04-13T08:30:37.341Z > grant-finder-bot@1.2.0 start
+2026-04-13T08:30:37.342Z > node src/main.js
+2026-04-13T08:30:37.342Z
+2026-04-13T08:30:37.408Z file:///usr/src/app/src/main.js:56
+2026-04-13T08:30:37.409Z         professionalPitch: `I analyzed the ${lead.title}. This ${tier} opportunity is ${complexity
+2026-04-13T08:30:37.410Z
+2026-04-13T08:30:37.410Z SyntaxError: Missing } in template expression
+2026-04-13T08:30:37.410Z     at compileSourceTextModule (node:internal/modules/esm/utils:346:16)
+2026-04-13T08:30:37.431Z     at ModuleLoader.moduleStrategy (node:internal/modules/esm/translators:146:18)
+2026-04-13T08:30:37.442Z     at #translate (node:internal/modules/esm/loader:497:12)
+2026-04-13T08:30:37.452Z     at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:544:27)
+2026-04-13T08:30:37.454Z     at async ModuleJob._link (node:internal/modules/esm/module_job:148:19)
+2026-04-13T08:30:37.455Z
+2026-04-13T08:30:37.455Z Node.js v20.20.1
+`
     };
 });
 
