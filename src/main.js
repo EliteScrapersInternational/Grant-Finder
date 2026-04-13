@@ -5,8 +5,9 @@ await Actor.init();
 const input = await Actor.getInput() || {};
 const { grantNiche, maxResults = 15 } = input;
 
-console.log(`📡 EXECUTING ELITE AUDIT: ${grantNiche}`);
+console.log(`📡 EXECUTING ELITE ABSOLUTE AUDIT: ${grantNiche}`);
 
+// Search for high-intent grant terms
 const searchRun = await Actor.call('apify/google-search-scraper', {
     "queries": [
         `"${grantNiche}" grant eligibility 2026`,
@@ -26,7 +27,7 @@ const eliteResults = rawLeads.map(lead => {
     const content = (lead.title + " " + lead.description).toLowerCase();
     
     // 🔍 ELIGIBILITY AUDIT
-    let eligibility = "General";
+    let eligibility = "General Business";
     if (content.includes("minority") || content.includes("diverse")) eligibility = "Minority-Owned";
     if (content.includes("woman") || content.includes("female")) eligibility = "Women-Owned";
     if (content.includes("non-profit") || content.includes("501c3")) eligibility = "Non-Profit Only";
@@ -37,20 +38,19 @@ const eliteResults = rawLeads.map(lead => {
     if (content.includes("million") || content.includes("1,000,000")) tier = "Tier 1 (High Funding)";
     else if (content.includes("thousand") || content.includes("50,000")) tier = "Tier 2 (Mid Funding)";
 
-    // ⚠️ RISK CHECK (Is it a waste of time?)
+    // ⚠️ RISK AUDIT
     let riskLevel = "Low";
     if (content.includes("closed") || content.includes("expired")) riskLevel = "CRITICAL: EXPIRED";
     if (content.includes("contest") || content.includes("luck")) riskLevel = "Medium (Contest-style)";
+
+    // 📝 COMPLEXITY CHECK
+    const complexity = content.includes("proposal") || content.includes("narrative") || content.includes("writing") ? "High (Full Proposal Required)" : "Medium (Form-based)";
 
     return {
         grantName: lead.title,
         eligibilityFocus: eligibility,
         fundingTier: tier,
+        complexity: complexity,
         riskAudit: riskLevel,
         directLink: lead.url,
-        professionalPitch: `I analyzed the ${lead.title}. This ${tier} opportunity focuses on ${eligibility} applicants. Audit shows ${riskLevel} risk for application.`
-    };
-});
-
-await Actor.pushData(eliteResults);
-await Actor.exit();
+        professionalPitch: `I analyzed the ${lead.title}. This ${tier} opportunity is ${complexity
