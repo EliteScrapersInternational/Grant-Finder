@@ -1,21 +1,21 @@
 {
-    "title": "Elite Grant Finder Pro",
+    "title": "Elite Grant Finder & Absolute Auditor",
     "type": "object",
     "schemaVersion": 1,
     "properties": {
         "grantNiche": {
-            "title": "Target Niche",
+            "title": "Grant Niche",
             "type": "string",
-            "description": "Example: Minority Women Entrepreneurs, Rural Education, Solar Energy",
+            "description": "Example: Minority Women Tech Startups, Solar Energy, Youth Education",
             "editor": "textfield",
             "prefill": "Small Business Grants"
         },
         "maxResults": {
-            "title": "Number of Leads",
+            "title": "Max Results",
             "type": "integer",
             "minimum": 1,
-            "maximum": 100,
-            "default": 20
+            "maximum": 50,
+            "default": 15
         }
     },
     "required": ["grantNiche"]
