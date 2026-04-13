@@ -1,13 +1,43 @@
 {
-    "title": "Elite Grant Absolute Results",
+    "actorOutputSchemaVersion": 1,
+    "title": "Grant Finder Results",
     "type": "object",
     "properties": {
-        "grantName": { "type": "string", "title": "Grant Opportunity" },
-        "eligibilityFocus": { "type": "string", "title": "Eligibility Group" },
-        "fundingTier": { "type": "string", "title": "Funding Level" },
-        "complexity": { "type": "string", "title": "Difficulty" },
-        "riskAudit": { "type": "string", "title": "Risk/Status" },
-        "directLink": { "type": "string", "title": "Source URL", "format": "uri" },
-        "professionalPitch": { "type": "string", "title": "Client Pitch" }
+        "grantName": {
+            "type": "string",
+            "title": "Grant Name",
+            "template": "{{value}}"
+        },
+        "eligibilityFocus": {
+            "type": "string",
+            "title": "Eligibility",
+            "template": "{{value}}"
+        },
+        "fundingTier": {
+            "type": "string",
+            "title": "Funding Tier",
+            "template": "{{value}}"
+        },
+        "complexity": {
+            "type": "string",
+            "title": "Complexity",
+            "template": "{{value}}"
+        },
+        "riskAudit": {
+            "type": "string",
+            "title": "Risk Level",
+            "template": "{{value}}"
+        },
+        "directLink": {
+            "type": "string",
+            "title": "Link",
+            "format": "uri",
+            "template": "<a href=\"{{value}}\">View Grant</a>"
+        },
+        "professionalPitch": {
+            "type": "string",
+            "title": "Pitch",
+            "template": "{{value}}"
+        }
     }
 }
