@@ -5,6 +5,7 @@
         "grantName": { "type": "string", "title": "Grant Opportunity" },
         "eligibilityFocus": { "type": "string", "title": "Eligibility Group" },
         "fundingTier": { "type": "string", "title": "Funding Level" },
+        "complexity": { "type": "string", "title": "Difficulty" },
         "riskAudit": { "type": "string", "title": "Risk/Status" },
         "directLink": { "type": "string", "title": "Source URL", "format": "uri" },
         "professionalPitch": { "type": "string", "title": "Client Pitch" }
