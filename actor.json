@@ -1,8 +1,11 @@
 {
     "actorSpecification": 1,
     "name": "grant-finder-bot",
-    "title": "Grant Finder & Auditor",
-    "description": "Finds active grant opportunities based on niche.",
-    "version": "0.0",
-    "dockerfile": "./Dockerfile"
+    "title": "Elite Grant Finder & Absolute Auditor",
+    "description": "Comprehensive AI grant analyst for businesses and non-profits.",
+    "version": "1.2",
+    "buildTag": "latest",
+    "dockerfile": "./Dockerfile",
+    "readme": "./README.md",
+    "input": "./input_schema.json"
 }
