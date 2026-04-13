@@ -1,0 +1,8 @@
+{
+    "actorSpecification": 1,
+    "name": "grant-finder-bot",
+    "title": "Grant Finder & Auditor",
+    "description": "Finds active grant opportunities based on niche.",
+    "version": "0.0",
+    "dockerfile": "./Dockerfile"
+}
