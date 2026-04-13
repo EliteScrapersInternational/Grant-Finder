@@ -1,16 +1,18 @@
 import { Actor } from 'apify';
-import { puppeteer } from 'puppeteer'; // We add a browser to "visit" sites
 
 await Actor.init();
 
 const input = await Actor.getInput() || {};
-const { grantNiche, maxResults = 10 } = input;
+const { grantNiche, maxResults = 15 } = input;
 
-console.log(`🕵️ Deep Audit started for: ${grantNiche}`);
+console.log(`📡 EXECUTING ELITE AUDIT: ${grantNiche}`);
 
-// STEP 1: Find the leads using Google
 const searchRun = await Actor.call('apify/google-search-scraper', {
-    "queries": [`${grantNiche} grants 2026`, `apply for ${grantNiche} funding`],
+    "queries": [
+        `"${grantNiche}" grant eligibility 2026`,
+        `how to apply for ${grantNiche} funding 2026`,
+        `site:.org "${grantNiche}" foundation grants`
+    ],
     "maxPagesPerQuery": 1,
     "resultsPerPage": maxResults
 });
@@ -20,41 +22,35 @@ const dataset = await Actor.openDataset(defaultDatasetId);
 const { items } = await dataset.getData();
 const rawLeads = items.flatMap(page => page.organicResults);
 
-const finalGrants = [];
-
-// STEP 2: Visit each website to find the TRUTH
-for (const lead of rawLeads) {
-    console.log(`🌐 Auditing: ${lead.url}`);
+const eliteResults = rawLeads.map(lead => {
+    const content = (lead.title + " " + lead.description).toLowerCase();
     
-    // We categorize based on the URL type
-    const isGov = lead.url.includes('.gov') || lead.url.includes('.edu');
-    const orgType = isGov ? 'High Authority (Gov/Edu)' : 'Private/Foundation';
+    // 🔍 ELIGIBILITY AUDIT
+    let eligibility = "General";
+    if (content.includes("minority") || content.includes("diverse")) eligibility = "Minority-Owned";
+    if (content.includes("woman") || content.includes("female")) eligibility = "Women-Owned";
+    if (content.includes("non-profit") || content.includes("501c3")) eligibility = "Non-Profit Only";
+    if (content.includes("veteran")) eligibility = "Veteran-Owned";
 
-    // We search the snippet for "Hidden" data
-    const description = lead.description.toLowerCase();
-    
-    // Advanced Logic: Categorizing the Grant Type
-    let grantType = "General Funding";
-    if (description.includes("small business")) grantType = "Small Business";
-    if (description.includes("nonprofit") || description.includes("501c3")) grantType = "Non-Profit";
-    if (description.includes("student") || description.includes("research")) grantType = "Academic";
+    // 💰 FUNDING MAGNITUDE
+    let tier = "Tier 3 (Small/Unknown)";
+    if (content.includes("million") || content.includes("1,000,000")) tier = "Tier 1 (High Funding)";
+    else if (content.includes("thousand") || content.includes("50,000")) tier = "Tier 2 (Mid Funding)";
 
-    // Advanced Logic: Smart "Success" Score
-    let successScore = 50; // Start at 50%
-    if (isGov) successScore += 20;
-    if (description.includes("2026")) successScore += 30;
-    if (description.includes("closed") || description.includes("expired")) successScore -= 80;
+    // ⚠️ RISK CHECK (Is it a waste of time?)
+    let riskLevel = "Low";
+    if (content.includes("closed") || content.includes("expired")) riskLevel = "CRITICAL: EXPIRED";
+    if (content.includes("contest") || content.includes("luck")) riskLevel = "Medium (Contest-style)";
 
-    finalGrants.push({
+    return {
         grantName: lead.title,
-        grantType: grantType,
-        organizationType: orgType,
-        successProbability: `${successScore}%`,
-        link: lead.url,
-        auditSummary: lead.description,
-        pitch: `Hi! I analyzed the ${lead.title} opportunity. With a ${successScore}% match score for the ${grantNiche} niche, this is a top-tier lead for you.`
-    });
-}
+        eligibilityFocus: eligibility,
+        fundingTier: tier,
+        riskAudit: riskLevel,
+        directLink: lead.url,
+        professionalPitch: `I analyzed the ${lead.title}. This ${tier} opportunity focuses on ${eligibility} applicants. Audit shows ${riskLevel} risk for application.`
+    };
+});
 
-await Actor.pushData(finalGrants);
+await Actor.pushData(eliteResults);
 await Actor.exit();
