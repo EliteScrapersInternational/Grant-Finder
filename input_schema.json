@@ -1,19 +1,21 @@
 {
-    "title": "Grant Finder Input",
+    "title": "Elite Grant Finder Pro",
     "type": "object",
     "schemaVersion": 1,
     "properties": {
         "grantNiche": {
-            "title": "Grant Niche",
+            "title": "Target Niche",
             "type": "string",
-            "description": "e.g., STEM grants for students",
+            "description": "Example: Minority Women Entrepreneurs, Rural Education, Solar Energy",
             "editor": "textfield",
             "prefill": "Small Business Grants"
         },
         "maxResults": {
-            "title": "Max Results",
+            "title": "Number of Leads",
             "type": "integer",
-            "default": 10
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
         }
     },
     "required": ["grantNiche"]
