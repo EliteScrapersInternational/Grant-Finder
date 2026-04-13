@@ -7,12 +7,15 @@ const { grantNiche, maxResults = 15 } = input;
 
 console.log(`📡 EXECUTING ELITE ABSOLUTE AUDIT: ${grantNiche}`);
 
+// The Google Scraper now wants queries as a single string separated by new lines
+const searchQueries = [
+    `"${grantNiche}" grant eligibility 2026`,
+    `how to apply for ${grantNiche} funding 2026`,
+    `site:.org "${grantNiche}" foundation grants`
+].join('\n');
+
 const searchRun = await Actor.call('apify/google-search-scraper', {
-    "queries": [
-        `"${grantNiche}" grant eligibility 2026`,
-        `how to apply for ${grantNiche} funding 2026`,
-        `site:.org "${grantNiche}" foundation grants`
-    ],
+    "queries": searchQueries,
     "maxPagesPerQuery": 1,
     "resultsPerPage": maxResults
 });
@@ -53,4 +56,5 @@ const eliteResults = rawLeads.map(lead => {
 });
 
 await Actor.pushData(eliteResults);
+console.log(`✅ AUDIT COMPLETE: Found ${eliteResults.length} high-value leads.`);
 await Actor.exit();
